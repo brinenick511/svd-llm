@@ -28,7 +28,8 @@ def get_calib_train_data(name, tokenizer, nsamples, seqlen=2048, seed=3, batch_s
         traindata = load_dataset('ptb_text_only', 'penn_treebank', split='train', cache_dir=dataset_cache_dir)
         tot_text = "\n\n".join(traindata["sentence"])
     elif name == "wikitext2":
-        traindata = load_dataset("wikitext", "wikitext-2-raw-v1", split="train", cache_dir=dataset_cache_dir)
+        # traindata = load_dataset("wikitext", "wikitext-2-raw-v1", split="train", cache_dir=dataset_cache_dir)
+        traindata = load_dataset("parquet", data_files="/data/yanghq/datasets/train-00000-of-00001.parquet", split="train")
         tot_text = "\n\n".join(traindata["text"])
     else:
         raise NotImplementedError
